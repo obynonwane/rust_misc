@@ -1,0 +1,45 @@
+# Compiled files
+/target/
+
+# Cargo package file backup
+**/*.rs.bk
+
+# Executables and binaries
+*.exe
+*.so
+*.dylib
+*.dll
+
+# macOS-specific files
+.DS_Store
+
+# Linux-specific files
+*.swp
+
+# Windows-specific files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# IDEs and editors
+# VS Code
+.vscode/
+
+# JetBrains IDEs (CLion, IntelliJ Rust plugin)
+.idea/
+*.iml
+
+# Byebug (debugger temp files)
+.byebug_history
+
+# Rust/Cargo specific
+/.cargo/
+/Cargo.lock
+
+# Optional: Keep Cargo.lock for binary projects, but ignore for libraries
+# Uncomment below if you're writing a library
+# Cargo.lock

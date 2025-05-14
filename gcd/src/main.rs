@@ -19,17 +19,32 @@ fn gcd(mut n: i32, mut m: i32) -> i32 {
 }
 
 use std::env;
+use std::str::FromStr;
 
 #[test]
 fn test_gcp() {
     assert_eq!(gcd(14, 15), 1);
 }
 fn main() {
-    let args = env::args();
+    let num_str = "123";
+    let result = i32::from_str(&num_str);
 
-    for arg in args.skip(1) {
-        println!("The arg from terminal {}", arg)
+    // println!("the result is, {:?}", result);
+
+    match result {
+        Ok(val) => {
+            println!("the value is {}", val)
+        }
+        Err(e) => {
+            println!("the error is {}", e)
+        }
     }
-    let res = gcd(10, 29);
-    println!("The gcd is: {}", res)
+
+    // let args = env::args();
+
+    // for arg in args.skip(1) {
+    //     println!("The arg from terminal {}", arg)
+    // }
+    // let res = gcd(10, 29);
+    // println!("The gcd is: {}", res)
 }
