@@ -18,6 +18,7 @@ fn gcd(mut n: i32, mut m: i32) -> i32 {
     n
 }
 
+// use core::num;
 use std::env;
 use std::str::FromStr;
 
@@ -26,25 +27,38 @@ fn test_gcp() {
     assert_eq!(gcd(14, 15), 1);
 }
 fn main() {
-    let num_str = "123";
-    let result = i32::from_str(&num_str);
-
-    // println!("the result is, {:?}", result);
-
-    match result {
-        Ok(val) => {
-            println!("the value is {}", val)
-        }
-        Err(e) => {
-            println!("the error is {}", e)
+    //we use vector to save all arguments from command line
+    let mut numbers = Vec::new();
+    //get arguments from command line but igonre the first one
+    //becuase it is the name of our executbale
+    let args = env::args().skip(1);
+    for arg in args {
+        //:: means class method or static method
+        let result = i32::from_str(&arg);
+        match result {
+            Ok(num) => {
+                numbers.push(num);
+            }
+            Err(_e) => {
+                //print the error message as err on console
+                eprintln!("error parsing arguemnt to number");
+                //exit from the app
+                std::process::exit(1);
+            }
         }
     }
 
-    // let args = env::args();
+    if numbers.len() == 0 {
+        eprintln!("Usage: gcd NUMBER...");
+        std::process::exit(1);
+    }
 
-    // for arg in args.skip(1) {
-    //     println!("The arg from terminal {}", arg)
-    // }
-    // let res = gcd(10, 29);
-    // println!("The gcd is: {}", res)
+    let mut d = numbers[0];
+    //iterate begin from the second element in the vector
+    for m in &numbers[1..] {
+        //reference and dereference
+        d = gcd(d, *m);
+    }
+
+    println!("The greatest common divisor of {:?} is {}", numbers, d);
 }
